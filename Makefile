@@ -1,7 +1,7 @@
 .PHONY: build
 
 DC := docker-compose -f docker-compose.dev.yml
-PHP := $(DC) exec php-fpm
+PHP := $(DC) exec -it php-fpm
 
 env:
 	cp .env.example .env
