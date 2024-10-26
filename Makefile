@@ -1,6 +1,7 @@
 .PHONY: build
 
 DC := docker-compose -f docker-compose.dev.yml
+PHP := $(DC) exec php-fpm
 
 env:
 	cp .env.example .env
@@ -20,14 +21,11 @@ restart: stop start
 ssh:
 	@$(DC) exec php-fpm bash
 
-# Run inside containers for compatability with not only UNIX systems
-# ==================================================================
-
 generate-key:
-	@php artisan key:generate
+	@$(PHP) php artisan key:generate
 
 composer-install:
-	@composer install
+	@$(PHP) composer install
 
 pint:
-	@./vendor/bin/pint -v
+	@$(PHP) ./vendor/bin/pint -v

@@ -1,0 +1,29 @@
+name: Run Tests
+on: [ push ]
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source Git repo
+        uses: actions/checkout@v4
+
+      - name: Build docker image
+        run: make build
+
+      - name: Create an env file
+        run: make env
+
+      - name: Start containers
+        run: make start
+
+      - name: Composer install
+        run: make composer-install
+
+      - name: Lint
+        run: make pint
+
+      - name: Stop containers
+        if: always()
+        run: make stop
