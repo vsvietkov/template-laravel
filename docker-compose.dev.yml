@@ -23,8 +23,24 @@ services:
           - XDEBUG_ENABLED=${XDEBUG_ENABLED-false}
     volumes:
       - ./:/var/www/html
+    depends_on:
+      - database
     networks:
       - development
+
+  database:
+    image: mysql:9.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - ${DB_PORT-3306}:3306
+    networks:
+      - development
+    volumes:
+      - './storage/database-data:/var/lib/mysql'
 
 networks:
   development:
