@@ -9,6 +9,9 @@ jobs:
       - name: Checkout source Git repo
         uses: actions/checkout@v4
 
+      - name: Set up Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
       - name: Build docker image
         run: make build
 
