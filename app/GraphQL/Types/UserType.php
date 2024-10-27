@@ -22,14 +22,14 @@ class UserType extends GraphQLType
             ],
             'email' => [
                 'type' => Type::string(),
-                'resolve' => function(User $root, array $args) {
+                'resolve' => function (User $root, array $args) {
                     return strtolower($root->email);
-                }
+                },
             ],
             'customAttribute' => [
                 'type' => Type::string(),
                 'selectable' => false,
-                'resolve' => fn() => 'This is a custom attribute'
+                'resolve' => fn () => 'This is a custom attribute',
             ],
             // Uses the 'sessions' function on User model
             'sessions' => [
