@@ -72,30 +72,18 @@ return [
     //      ],
     //  ]
     //
-    'schemas' => [
-        // TODO: Move to a Schema class
-        'default' => [
-            'query' => [
-                \App\GraphQL\Queries\UsersQuery::class,
-            ],
-            'mutation' => [
-                // ExampleMutation::class,
-            ],
-            // The types only available in this schema
-            'types' => [
-                // ExampleType::class,
-            ],
-
-            // Laravel HTTP middleware
-            'middleware' => null,
-
-            // Which HTTP methods to support; must be given in UPPERCASE!
-            'method' => ['GET', 'POST'],
-
-            // An array of middlewares, overrides the global ones
-            'execution_middleware' => null,
-        ],
-    ],
+    'schemas' => array_combine(
+        // Names of the schemas
+        array_map(
+            fn($file) => lcfirst(str_replace('Schema', '', pathinfo($file, PATHINFO_FILENAME))),
+            glob(app_path('GraphQL/Schemas/*Schema.php'))
+        ),
+        // The schema configuration (class file)
+        array_map(
+            fn($file) => 'App\\GraphQL\\Schemas\\' . pathinfo($file, PATHINFO_FILENAME),
+            glob(app_path('GraphQL/Schemas/*Schema.php'))
+        ),
+    ),
 
     // The global types available to all schemas.
     // You can then access it from the facade like this: GraphQL::type('user')
@@ -106,12 +94,10 @@ return [
     //     App\GraphQL\Types\UserType::class
     // ]
     //
-    'types' => [
-        \App\GraphQL\Types\UserType::class,
-        \App\GraphQL\Types\SessionType::class,
-        // ExampleRelationType::class,
-        // \Rebing\GraphQL\Support\UploadType::class,
-    ],
+    'types' => array_map(
+        fn ($file) => 'App\\GraphQL\\Types\\' . pathinfo($file, PATHINFO_FILENAME),
+        glob(app_path('GraphQL/Types/*Type.php'))
+    ),
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.
