@@ -37,4 +37,6 @@ ssh:
 	@$(DC) exec php-fpm bash
 
 pint:
+	@$(PHP) ./vendor/bin/pint -v --test
+pint-fix:
 	@$(PHP) ./vendor/bin/pint -v
