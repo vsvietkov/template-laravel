@@ -39,7 +39,7 @@ abstract class Base implements ConfigConvertible
         $classDirectory = $folder . '/' . $schemaName;
 
         return array_map(
-            fn($file) => 'App\\GraphQL\\' . $classNamespace . '\\' . pathinfo($file, PATHINFO_FILENAME),
+            fn ($file) => 'App\\GraphQL\\' . $classNamespace . '\\' . pathinfo($file, PATHINFO_FILENAME),
             glob(app_path('GraphQL/' . $classDirectory . '/' . $fileNamePattern))
         );
     }
