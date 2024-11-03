@@ -73,14 +73,14 @@ return [
     //  ]
     //
     'schemas' => array_combine(
-        // Names of the schemas
+        // Names of the schemas (e.g 'default' from 'DefaultSchema')
         array_map(
             fn($file) => lcfirst(str_replace('Schema', '', pathinfo($file, PATHINFO_FILENAME))),
             glob(app_path('GraphQL/Schemas/*Schema.php'))
         ),
-        // The schema configuration (class file)
+        // The schema configuration ("toConfig" content)
         array_map(
-            fn($file) => 'App\\GraphQL\\Schemas\\' . pathinfo($file, PATHINFO_FILENAME),
+            fn($file) => (new ('App\\GraphQL\\Schemas\\' . pathinfo($file, PATHINFO_FILENAME)))->toConfig(),
             glob(app_path('GraphQL/Schemas/*Schema.php'))
         ),
     ),
