@@ -27,6 +27,9 @@ jobs:
       - name: Lint
         run: make pint
 
+      - name: Test
+        run: make test
+
       - name: Stop containers
         if: always()
         run: make stop
