@@ -40,3 +40,6 @@ pint:
 	@$(PHP) ./vendor/bin/pint -v --test
 pint-fix:
 	@$(PHP) ./vendor/bin/pint -v
+
+test:
+	@$(PHP) php artisan test
