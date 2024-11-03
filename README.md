@@ -10,6 +10,9 @@
 
 Now you can access the project at `http://localhost`
 
+**For non-local environment, do not forget to cache config** via `make config-cache` in order to load graphql schemas
+content only once and not on every request.
+
 ### GraphQL
 
 Default schema is accessible at `http://localhost/graphql`
