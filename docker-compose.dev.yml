@@ -41,6 +41,8 @@ services:
       - development
     volumes:
       - './storage/database-data:/var/lib/mysql'
+      - './storage/logs/database:/var/log/mysql'
+#      - './infrastructure/database/mysql.cnf:/etc/mysql/conf.d/my.cnf' # Uncomment for logging
 
 networks:
   development:
