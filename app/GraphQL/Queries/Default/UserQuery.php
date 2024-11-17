@@ -12,7 +12,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 class UserQuery extends Query
 {
     protected $attributes = [
-        'name' => 'user', // TODO: Add a test to exclude duplicated names in a scope of single schema
+        'name' => 'user',
     ];
 
     public function type(): Type

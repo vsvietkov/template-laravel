@@ -33,7 +33,7 @@ abstract class Base implements ConfigConvertible
 
     private function loadClasses(string $folder, string $fileNamePattern): array
     {
-        // From "DefaultSchema" to "Default"
+        // $schemaName - From "DefaultSchema" to "Default"
         $schemaName = Str::replaceLast('Schema', '', class_basename(static::class));
         $classNamespace = $folder . '\\' . $schemaName;
         $classDirectory = $folder . '/' . $schemaName;
