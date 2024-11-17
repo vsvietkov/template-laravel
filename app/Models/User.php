@@ -3,15 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\GraphQLModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method static GraphQLQueryBuilder query()
+ */
 class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+    use GraphQLModelTrait;
 
     /**
      * The attributes that are mass assignable.
