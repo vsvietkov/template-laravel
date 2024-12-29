@@ -24,8 +24,11 @@ jobs:
       - name: Composer install
         run: make composer-install
 
-      - name: Lint
+      - name: Lint php
         run: make pint
+
+      - name: Lint typescript
+        run: make node-lint
 
       - name: Test
         run: make test
