@@ -2,7 +2,7 @@
 
 DC := docker-compose -f docker-compose.dev.yml
 PHP := $(DC) exec -it php-fpm
-NODE := $(DC) exec node
+NODE := $(DC) exec -it node
 
 env:
 	cp .env.example .env
