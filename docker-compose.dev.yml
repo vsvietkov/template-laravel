@@ -44,5 +44,19 @@ services:
       - './storage/logs/database:/var/log/mysql'
 #      - './infrastructure/database/mysql.cnf:/etc/mysql/conf.d/my.cnf' # Uncomment for logging
 
+  node:
+    build:
+      context: .
+      dockerfile: ./infrastructure/node/Dockerfile
+      target: base
+    working_dir: /var/www/html
+    tty: true
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - ${VITE_PORT-5173}:5173
+    networks:
+      - development
+
 networks:
   development:

@@ -4,8 +4,11 @@
 2. `make build`
 3. `make start`
 4. `make composer-install`
-5. `make generate-key`
-6. `make migrate`
-7. `make seed`
+5. `make node-install`
+6. `make generate-key`
+7. `make migrate`
+8. `make seed`
 
 Now you can access the project at `http://localhost`
+
+Inertia example root is at `http://localhost/inertia`

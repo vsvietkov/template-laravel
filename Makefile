@@ -2,6 +2,7 @@
 
 DC := docker-compose -f docker-compose.dev.yml
 PHP := $(DC) exec -it php-fpm
+NODE := $(DC) exec node
 
 env:
 	cp .env.example .env
@@ -23,6 +24,8 @@ generate-key:
 
 composer-install:
 	@$(PHP) composer install
+node-install:
+	@$(NODE) pnpm install
 
 migrate:
 	@$(PHP) php artisan migrate
@@ -35,6 +38,8 @@ truncate:
 
 ssh:
 	@$(DC) exec php-fpm bash
+ssh-node:
+	@$(DC) exec node bash
 
 pint:
 	@$(PHP) ./vendor/bin/pint -v --test
@@ -43,3 +48,8 @@ pint-fix:
 
 test:
 	@$(PHP) php artisan test
+
+node-dev:
+	@$(NODE) pnpm run dev
+node-build:
+	@$(NODE) pnpm run build
