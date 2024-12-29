@@ -45,6 +45,10 @@ pint:
 	@$(PHP) ./vendor/bin/pint -v --test
 pint-fix:
 	@$(PHP) ./vendor/bin/pint -v
+node-lint:
+	@$(NODE) pnpm run lint
+node-lint-fix:
+	@$(NODE) pnpm run lint:fix
 
 test:
 	@$(PHP) php artisan test
